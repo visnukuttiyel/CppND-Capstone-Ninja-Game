@@ -31,7 +31,7 @@ void MessageQueue<T>::send(T &&msg)
 
 }
 
-void Bullet::Update() {
+void Bullet::Fire() {
 
 threads.emplace_back(std::thread(&Bullet::UpadatePosition, this));
 
@@ -58,11 +58,16 @@ void Bullet::UpadatePosition()
      std::chrono::time_point<std::chrono::system_clock> lastUpdate;
     while(true)
     {
+        if (!target_alive_)
+        {
+            bullet_msg_queue_.send(std::move(current_position));
+            return;
+        }
         // sleep at every iteration to reduce CPU usage
-        std::this_thread::sleep_for(std::chrono::milliseconds(150));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
         
         long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
-        if (timeSinceLastUpdate >= 3500)
+        if (timeSinceLastUpdate >= 10)
         {   // change bullet heading and position
             theta = atan((target_position_.y-current_position.y)/(target_position_.x-current_position.x));
             b = (theta);
@@ -90,6 +95,7 @@ void Bullet::Reset()
     current_position = start_position_;
     theta = atan((50-current_position.y)/(50-current_position.x));
     body.emplace_back(SDL_Point{static_cast<int>(current_position.x), static_cast<int>(current_position.y)});
+    target_alive_ = true;
 
 }
 
@@ -97,6 +103,11 @@ void Bullet::SetTarget(int const &target_x, int const &target_y)
 {
         target_position_.x = target_x;
         target_position_.y = target_y;
+}
+
+void Bullet::SetTargetStatus(bool targetstatus)
+{
+        target_alive_ = targetstatus;
 }
 
  std::vector<SDL_Point> Bullet::GetBulletBody()

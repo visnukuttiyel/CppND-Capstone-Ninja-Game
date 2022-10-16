@@ -55,9 +55,10 @@ public:
     }
 
     void SetTarget(int const &target_x, int const &target_y);
+    void SetTargetStatus(bool targetstatus);
 
     std::vector<SDL_Point> GetBulletBody();
-    void Update();
+    void Fire();
 
     float speed{0.05f};
     float theta{kPHI / 4};
@@ -80,6 +81,7 @@ private:
     Point target_position_;
     std::vector<SDL_Point> body;
     MessageQueue<Point> bullet_msg_queue_;
+    bool target_alive_;
 };
 
 #endif

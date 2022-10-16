@@ -42,8 +42,6 @@ Gold hungry Ninja needs to avoid bullets fired by tanks located in 4 corners to 
 
 * Class constructors utilize member initialization lists. tank.h line 14 in the new class "tank"  
 
-* Classes encapsulate behavior. snake.h line 18 in the new class "Food" encapsulate "FoodType"
-
 * The project uses multithreading. Bullet.cpp line 36 in creating a thread to update bullet position being fired. 
 
 * A condition variable is used in the project.  Bullet.cpp line 13.

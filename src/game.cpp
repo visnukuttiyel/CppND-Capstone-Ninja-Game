@@ -48,6 +48,11 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     if (frame_duration < target_frame_duration) {
       SDL_Delay(target_frame_duration - frame_duration);
     }
+
+    if (!ninja.alive)
+    {
+      break;
+    }
   }
 }
 
@@ -80,6 +85,7 @@ void Game::Update() {
 
     SDL_Point bullet_postion = tank->bullet.GetBulletBody().back();
     ninja.alive = ninja.alive && !ninja.NinjaCell(bullet_postion.x, bullet_postion.y);
+    tank->bullet.SetTargetStatus(ninja.alive);
 
   }
 

@@ -7,8 +7,11 @@
 void Tank::Update(int const &target_x, int const &target_y) {
 
 bullet.SetTarget(target_x,target_y);
-bullet.Update();
-
+if (!bullet_fired_)
+{
+  bullet.Fire(); // Fire bullet
+  bullet_fired_ = true;
+}
 }
 
 std::vector<SDL_Point> Tank::GetBulletBody()

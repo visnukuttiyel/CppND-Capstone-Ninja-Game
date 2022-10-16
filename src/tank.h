@@ -30,6 +30,7 @@ class Tank: public BattleField
  private:
   int pos_x;
   int pos_y;
+  bool bullet_fired_{false};
 };
 
 #endif
