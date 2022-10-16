@@ -71,7 +71,7 @@ void Renderer::Render(Ninja const ninja, SDL_Point const &food, std::vector<std:
   }
   SDL_RenderFillRect(sdl_renderer, &block);
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
-  // // Render tanks
+  // Render tanks
   for(auto tank:tanks)
   {
     for (SDL_Point const &point : tank->body) {
@@ -79,6 +79,7 @@ void Renderer::Render(Ninja const ninja, SDL_Point const &food, std::vector<std:
     block.y = point.y * block.h;
     SDL_RenderFillRect(sdl_renderer, &block);
     }
+    // Render each bullet
     std::vector<SDL_Point> bullet_body = tank->GetBulletBody();
     for (SDL_Point const &point : bullet_body) {
     block.x = point.x * block.w;

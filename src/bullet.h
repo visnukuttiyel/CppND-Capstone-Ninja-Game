@@ -59,15 +59,13 @@ public:
     std::vector<SDL_Point> GetBulletBody();
     void Update();
 
-
-
-    float life_time{2}; // 2s life time of the bullet
     float speed{0.05f};
     float theta{kPHI / 4};
     float const trail_length{20};
     float const pos_error{0.1};
 
     Point current_position;
+    // line states 
     float a{0};
     float b{0};
     int counter{0};

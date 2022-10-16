@@ -22,11 +22,8 @@ class Tank: public BattleField
   void Update(int const &target_x, int const &target_y);
   std::vector<SDL_Point> GetBulletBody();
 
-  int count{0};
-
   float speed{0.1f};
-  const int frequency{40};
-  
+    
   std::vector<SDL_Point> body;
   
   Bullet bullet;

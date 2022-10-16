@@ -36,7 +36,7 @@ void Ninja::UpdateHead() {
       break;
   }
 
-  // Wrap the Ninja around to the beginning if going off of the screen.
+  // Keep Ninja around within the screen
   head_x = Clip(head_x, 0, grid_width);
   head_y = Clip(head_y, 0, grid_height);
   
@@ -44,7 +44,8 @@ void Ninja::UpdateHead() {
 }
 
 void Ninja::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) {
-  // Add previous head location to vector
+  
+  // Move Ninja legs at an angle
   theta = theta + delta_theta;
   if ((theta > THETA_MAX) || (theta < 0))
   {

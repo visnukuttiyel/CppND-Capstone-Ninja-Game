@@ -6,10 +6,6 @@
 template <typename T>
 T MessageQueue<T>::receive()
 {
-    // FP.5a : The method receive should use std::unique_lock<std::mutex> and _condition.wait() 
-    // to wait for and receive new messages and pull them from the queue using move semantics. 
-    // The received object should then be returned by the receive function. 
-
     // perform queue modification under the lock
     std::unique_lock<std::mutex> uLock(_mutex);  // lock_guard cant be used here since lock needs to be temporarily released during wait
 
@@ -25,17 +21,13 @@ T MessageQueue<T>::receive()
 template <typename T>
 void MessageQueue<T>::send(T &&msg)
 {
-    // FP.4a : The method send should use the mechanisms std::lock_guard<std::mutex> 
-    // as well as _condition.notify_one() to add a new message to the queue and afterwards send a notification.
-
         // perform vector modification under the lock
         std::lock_guard<std::mutex> uLock(_mutex);  // lock is released once ulock gets out of scope
 
         // add vector to queue
-        // std::cout << "   Message " << msg << " has been sent to the queue" << std::endl;
         _queue.clear();
         _queue.emplace_back(std::move(msg));
-        _condition.notify_one(); // notify client after pushing new Vehicle into vector
+        _condition.notify_one(); // notify client 
 
 }
 
@@ -71,7 +63,7 @@ void Bullet::UpadatePosition()
         
         long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
         if (timeSinceLastUpdate >= 3500)
-        {
+        {   // change bullet heading and position
             theta = atan((target_position_.y-current_position.y)/(target_position_.x-current_position.x));
             b = (theta);
             a = current_position.y - b*current_position.x;
@@ -116,7 +108,7 @@ void Bullet::SetTarget(int const &target_x, int const &target_y)
         if (counter > trail_length)
         {
             counter--;
-            body.erase(body.begin());
+            body.erase(body.begin()); // ersase old trail of bullet
         } 
     return body;
  }
