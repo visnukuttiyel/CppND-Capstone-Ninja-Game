@@ -89,6 +89,11 @@ void Game::Update() {
 
   }
 
+   for (auto tank:tanks)
+  {
+    tank->bullet.SetTargetStatus(ninja.alive);
+  }
+
 
   // Check if there's food over here
   if (ninja.NinjaCell(food.x, food.y)) {
