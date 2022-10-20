@@ -60,9 +60,9 @@ public:
     std::vector<SDL_Point> GetBulletBody();
     void Fire();
 
-    float speed{0.05f};
+    float speed{0.1f};
     float theta{kPHI / 4};
-    float const trail_length{20};
+    float const trail_length{2000};
     float const pos_error{0.1};
 
     Point current_position;

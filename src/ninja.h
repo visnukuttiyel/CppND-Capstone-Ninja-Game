@@ -21,7 +21,7 @@ class Ninja {
 
   Direction direction = Direction::kUp;
 
-  float speed{0.3f};
+  float speed{1.0f};
   const float THETA_MAX{3.14/6};
   float theta{3.14/6};
   float delta_theta{0.01};

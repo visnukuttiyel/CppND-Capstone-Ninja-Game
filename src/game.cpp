@@ -113,5 +113,10 @@ tanks.push_back(std::make_shared<Tank>(0,0));
 tanks.push_back(std::make_shared<Tank>(grid_width, 0));
 tanks.push_back(std::make_shared<Tank>(0, grid_height));
 tanks.push_back(std::make_shared<Tank>(grid_width, grid_height));
+tanks.push_back(std::make_shared<Tank>(grid_width/2, grid_height/2));
+tanks.push_back(std::make_shared<Tank>(0, grid_height/2));
+tanks.push_back(std::make_shared<Tank>(grid_width/2, 0));
+tanks.push_back(std::make_shared<Tank>(grid_width/2, grid_height));
+tanks.push_back(std::make_shared<Tank>(grid_width, grid_height/2));
 
 }

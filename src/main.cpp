@@ -8,8 +8,8 @@ int main() {
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
   constexpr std::size_t kScreenWidth{1000};
   constexpr std::size_t kScreenHeight{1000};
-  constexpr std::size_t kGridWidth{100};
-  constexpr std::size_t kGridHeight{100};
+  constexpr std::size_t kGridWidth{500};
+  constexpr std::size_t kGridHeight{500};
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;

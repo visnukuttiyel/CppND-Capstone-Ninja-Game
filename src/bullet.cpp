@@ -67,13 +67,21 @@ void Bullet::UpadatePosition()
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
         
         long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
-        if (timeSinceLastUpdate >= 10)
+        if (timeSinceLastUpdate >= 2)
         {   // change bullet heading and position
             theta = atan((target_position_.y-current_position.y)/(target_position_.x-current_position.x));
-            b = (theta);
-            a = current_position.y - b*current_position.x;
-            current_position.x = current_position.x + speed*cos(theta)*BangBangControl(target_position_.x-current_position.x);
-            current_position.y = EvaluateY(current_position.x);
+            if (std::abs((cos(theta)))>0.1)
+            {
+                b = (theta);
+                a = current_position.y - b*current_position.x;
+                current_position.x = current_position.x + speed*cos(theta)*BangBangControl(target_position_.x-current_position.x);
+                current_position.y = EvaluateY(current_position.x);
+
+            }
+            else
+            {
+                current_position.y = current_position.y + BangBangControl(target_position_.y-current_position.y)*speed;
+            }
             lastUpdate = std::chrono::system_clock::now();
 
         }
